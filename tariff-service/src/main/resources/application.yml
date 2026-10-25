@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  tomcat:
+    threads:
+      max: 16
+spring:
+  application:
+    name: tariff-service
+  datasource:
+    url: jdbc:postgresql://localhost:5445/tariffs
+    username: platform
+    password: platform
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 0
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  kafka:
+    bootstrap-servers: localhost:9106
+  rabbitmq:
+    host: localhost
+    port: 5685
+    username: platform
+    password: platform
+    listener:
+      simple:
+        default-requeue-rejected: false
+        prefetch: 1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
